@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+/* UniDorm design tokens.
+   A KBTU student-housing portal: navy navigation, light blue working area, warm yellow highlights,
+   and cartoon illustrations (their own palette lives in components/illustrations/palette.ts).
+   Headings use Rubik (friendly, rounded), text uses Onest. Both support Kazakh letters. */
+@theme {
+  --color-page: #f2f5fb;
+  --color-surface: #ffffff;
+  --color-surface-raised: #e7eefb;
+  --color-surface-sunken: #f7f9fd;
+  --color-border: #dfe6f1;
+  --color-border-strong: #c5d1e3;
+  --color-accent: #2563c9;
+  --color-accent-strong: #1b4fa6;
+  --color-on-accent: #ffffff;
+  --color-text: #172440;
+  --color-muted: #5d6b84;
+  --color-success: #23875b;
+  --color-warning: #b07510;
+  --color-danger: #c2453a;
+
+  /* KBTU navy (sidebar, banners) and the yellow highlight */
+  --color-nav: #12305f;
+  --color-nav-active: #1d4280;
+  --color-nav-text: #eef3fb;
+  --color-nav-muted: #9fb2d3;
+  --color-highlight: #f6b93b;
+  --color-highlight-soft: #fdf1d6;
+
+  --font-sans: "Onest", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Rubik", "Onest", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --radius-control: 0.75rem;
+  --radius-card: 1.25rem;
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+@layer components {
+  /* Short context line above page titles and inside cards ("Housing Office · Jastar City"). */
+  .eyebrow {
+    font-size: 0.8125rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+}
+
+/* Gentle float for the waving student in the home banner. */
+@keyframes wave {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  50% {
+    rotate: -14deg;
+  }
+}
+
+.animate-wave {
+  transform-box: fill-box;
+  transform-origin: 20% 90%;
+  animation: wave 2.4s ease-in-out infinite;
+}
